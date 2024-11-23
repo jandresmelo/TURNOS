@@ -1,0 +1,139 @@
+
+INICIO DEL PROGRAMA CONTROL TURNOS
+
+DEFINIR estructura Turno:
+    - id (cadena): identificador único de 10 caracteres
+    - cedula (cadena): cédula del usuario
+    - tipoTurno (cadena): tipo del turno (externo o colaborador)
+    - numeroTurno (cadena): identificador del turno (ejemplo: MAY-7)
+    - fechaHoraCreacion (cadena): fecha y hora en que se creó el turno
+    - fechaHoraAtencion (cadena): fecha y hora en que el turno fue atendido (inicialmente nulo)
+    - calificacion (entero): calificación del turno (inicialmente 0)
+
+DEFINIR lista colaTurnos como lista vacía
+
+CARGAR turnos desde el archivo JSON:
+    SI el archivo existe:
+        LEER los turnos y almacenarlos en colaTurnos
+    SI NO:
+        INICIALIZAR colaTurnos como lista vacía
+
+FUNCIÓN registrarTurno(cedula, tipoTurno, numeroTurno, categoria):
+    SI existe un turno pendiente con la misma cedula:
+        MOSTRAR mensaje de error
+        TERMINAR función
+    FIN SI
+
+    GENERAR id único de 10 caracteres
+    CREAR nuevoTurno con los valores proporcionados
+    SI categoria es "INTERNO":
+        AGREGAR nuevoTurno al inicio de colaTurnos
+    SI NO:
+        AGREGAR nuevoTurno al final de colaTurnos
+    FIN SI
+    GUARDAR turnos en el archivo JSON
+    MOSTRAR detalles del turno asignado y tiempo estimado
+
+FUNCIÓN eliminarTurno(identificador):
+    BUSCAR turno en colaTurnos por cedula o numeroTurno
+    SI existe:
+        ELIMINAR turno de la lista
+        GUARDAR turnos en el archivo JSON
+        MOSTRAR mensaje de éxito
+    SI NO:
+        MOSTRAR mensaje de error
+    FIN SI
+
+FUNCIÓN marcarTurnoAtendido(identificador):
+    BUSCAR turno en colaTurnos por cedula o numeroTurno
+    SI existe:
+        ASIGNAR fechaHoraAtencion como la fecha y hora actual
+        GUARDAR turnos en el archivo JSON
+        MOSTRAR mensaje de éxito
+    SI NO:
+        MOSTRAR mensaje de error
+    FIN SI
+
+FUNCIÓN calificarTurno(identificador, calificacion):
+    BUSCAR turno en colaTurnos por cedula o numeroTurno
+    SI existe:
+        ASIGNAR calificacion al turno
+        GUARDAR turnos en el archivo JSON
+        MOSTRAR mensaje de éxito
+    SI NO:
+        MOSTRAR mensaje de error
+    FIN SI
+
+FUNCIÓN mostrarTurnosPendientes():
+    MOSTRAR encabezado "Reporte de Turnos Pendientes"
+    PARA cada turno en colaTurnos:
+        SI turno no está atendido:
+            MOSTRAR los detalles del turno en formato vertical
+        FIN SI
+    FIN PARA
+    SI no hay turnos pendientes:
+        MOSTRAR mensaje "No hay turnos pendientes"
+
+FUNCIÓN asignarTurno():
+    SOLICITAR cedula
+    SI existe un turno pendiente para esa cedula:
+        MOSTRAR mensaje de error
+        TERMINAR función
+    FIN SI
+
+    MOSTRAR lista de tipos de turno externos
+    SOLICITAR tipoTurno
+    GENERAR numeroTurno (ejemplo: MAY-7)
+    LLAMAR registrarTurno(cedula, tipoTurno, numeroTurno, "EXTERNO")
+
+FUNCIÓN asignarTurnoColaboradores():
+    SOLICITAR cedula
+    SI existe un turno pendiente para esa cedula:
+        MOSTRAR mensaje de error
+        TERMINAR función
+    FIN SI
+
+    MOSTRAR lista de tipos de turno internos
+    SOLICITAR tipoTurno
+    GENERAR numeroTurno (ejemplo: ADM-1)
+    LLAMAR registrarTurno(cedula, tipoTurno, numeroTurno, "INTERNO")
+
+FUNCIÓN guardarTurnos():
+    ESCRIBIR colaTurnos al archivo JSON en formato vertical
+
+MENÚ PRINCIPAL:
+    HACER:
+        MOSTRAR opciones:
+            1. Asignar turno
+            2. Asignar turno colaboradores
+            3. Eliminar turno
+            4. Marcar turno como atendido
+            5. Calificar turno
+            6. Mostrar reporte de turnos pendientes
+            7. Salir
+        SOLICITAR opcion
+        SEGÚN opcion:
+            CASO 1:
+                LLAMAR asignarTurno()
+            CASO 2:
+                LLAMAR asignarTurnoColaboradores()
+            CASO 3:
+                SOLICITAR identificador
+                LLAMAR eliminarTurno(identificador)
+            CASO 4:
+                SOLICITAR identificador
+                LLAMAR marcarTurnoAtendido(identificador)
+            CASO 5:
+                SOLICITAR identificador
+                SOLICITAR calificacion
+                LLAMAR calificarTurno(identificador, calificacion)
+            CASO 6:
+                LLAMAR mostrarTurnosPendientes()
+            CASO 7:
+                MOSTRAR mensaje de despedida
+            OTRO CASO:
+                MOSTRAR mensaje de opción inválida
+        FIN SEGÚN
+    MIENTRAS opcion != 7
+
+FIN DEL PROGRAMA

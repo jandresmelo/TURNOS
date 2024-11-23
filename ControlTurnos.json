@@ -1,0 +1,50 @@
+[
+  {
+    "id": "AB48A2A783",
+    "cedula": "63395665",
+    "tipoTurno": "Administrativo",
+    "numeroTurno": "ADM-4",
+    "fechaHoraCreacion": "2024-11-22 19:04:51",
+    "calificacion": 0
+  },
+  {
+    "id": "25B92E168B",
+    "cedula": "52962130",
+    "tipoTurno": "Docente",
+    "numeroTurno": "DOC-2",
+    "fechaHoraCreacion": "2024-11-22 19:02:53",
+    "calificacion": 0
+  },
+  {
+    "id": "3C998BBCD0",
+    "cedula": "80903390",
+    "tipoTurno": "General",
+    "numeroTurno": "GEN-1",
+    "fechaHoraCreacion": "2024-11-22 19:02:19",
+    "calificacion": 0
+  },
+  {
+    "id": "00A3688444",
+    "cedula": "20938811",
+    "tipoTurno": "Mayores de 60",
+    "numeroTurno": "MAY-3",
+    "fechaHoraCreacion": "2024-11-22 19:04:10",
+    "calificacion": 0
+  },
+  {
+    "id": "65BFE308C8",
+    "cedula": "52259051",
+    "tipoTurno": "Externo",
+    "numeroTurno": "EXT-5",
+    "fechaHoraCreacion": "2024-11-22 19:05:19",
+    "calificacion": 0
+  },
+  {
+    "id": "03290EBA14",
+    "cedula": "52251900",
+    "tipoTurno": "Niños en brazos",
+    "numeroTurno": "NIÑ-6",
+    "fechaHoraCreacion": "2024-11-22 19:06:10",
+    "calificacion": 0
+  }
+]
